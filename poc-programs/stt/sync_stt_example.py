@@ -21,13 +21,19 @@ config = cloud_speech.RecognitionConfig(
         enable_automatic_punctuation=True,
     )
 )
+"""
+# If you want to open local audio file, please uncomment this snip codes, 
+# and notice to modify request section about uri and content.
 
 with open("/home/hemanbin/english-radio.mp3", "rb") as f:
     audio_content = f.read()
+"""
+
 request = cloud_speech.RecognizeRequest(
     recognizer=f"projects/{PROJECT_ID}/locations/{LOCATION}/recognizers/_",
     config=config,
-    content=audio_content,
+    uri="gs://hemanbin-common/example_files/stt_files/short_time_speech.mp3",
+    #content=audio_content,
 )
 
 # Transcribes the audio into text
